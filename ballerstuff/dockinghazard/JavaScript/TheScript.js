@@ -12,11 +12,15 @@ let coolThing;
 const baller = {
 	get name() {
 		return name;
-	}
+	},
 	get coolName() {
 		return coolName;
-	}
+	},
 	get coolThing() {
 		return coolThing;
 	}
-}
+},
+
+const corn = { name: baller.name, cool: baller.coolName, thing: baller.coolThing }
+
+console.log(corn);
