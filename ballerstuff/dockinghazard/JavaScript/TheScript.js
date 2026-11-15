@@ -15,18 +15,23 @@ coolThing = [ 'DawgBall', 'NineNoodle' ]
 // It's absolutely is useless but hey, who cares.
 const baller = {
 	get name() {
-		return name[Math.floor(Math.random() * name.length)];
+		const x = name;
+		return x[Math.floor(Math.random() * x.length)];
 	},
 	get coolName() {
-		return coolName[Math.floor(Math.random() * coolName.length)];
+		const x = coolName;
+		return x[Math.floor(Math.random() * x.length)];
 	},
 	get coolThing() {
-		return coolThing[Math.floor(Math.random() * coolThing.length)];
+		const x = coolThing;
+		return x[Math.floor(Math.random() * x.length)];
 	}
 };
 
 const corn = { name: baller.name, cool: baller.coolName, thing: baller.coolThing };
 
 function pachinko() {
-	console.log(baller);
+	console.log(`[===*=*=*=[ PACHINKO ]=*=*=*===]\nName: ${baller.name},\nCool Name: ${baller.coolName},\nCool Thing: ${baller.coolThing}.\n=====*===*===*===*===*===*=====`);
 };
+
+pachinko()
