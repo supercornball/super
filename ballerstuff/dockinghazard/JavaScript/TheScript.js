@@ -19,8 +19,8 @@ const baller = {
 	get coolThing() {
 		return coolThing;
 	}
-},
+};
 
 const corn = { name: baller.name, cool: baller.coolName, thing: baller.coolThing }
 
-console.log(corn);
+// console.log(corn);
