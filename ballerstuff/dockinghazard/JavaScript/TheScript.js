@@ -8,6 +8,10 @@ let name;
 let coolName;
 let coolThing;
 
+name = 'Shiba'
+coolName = 'InuMaki'
+coolThing = 'DawgBall'
+
 // It's absolutely is useless but hey, who cares.
 const baller = {
 	get name() {
@@ -21,6 +25,6 @@ const baller = {
 	}
 };
 
-const corn = { name: baller.name, cool: baller.coolName, thing: baller.coolThing }
+const corn = { name: baller.name, cool: baller.coolName, thing: baller.coolThing };
 
 // console.log(corn);
