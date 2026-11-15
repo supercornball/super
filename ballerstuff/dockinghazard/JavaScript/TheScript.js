@@ -8,23 +8,25 @@ let name;
 let coolName;
 let coolThing;
 
-name = 'Shiba'
-coolName = 'InuMaki'
-coolThing = 'DawgBall'
+name = [ 'Shiba', 'Kuzuryu' ]
+coolName = [ 'InuMaki', 'Nonagron' ]
+coolThing = [ 'DawgBall', 'NineNoodle' ]
 
 // It's absolutely is useless but hey, who cares.
 const baller = {
 	get name() {
-		return name;
+		return name[Math.floor(Math.random() * name.length)];
 	},
 	get coolName() {
-		return coolName;
+		return coolName[Math.floor(Math.random() * coolName.length)];
 	},
 	get coolThing() {
-		return coolThing;
+		return coolThing[Math.floor(Math.random() * coolThing.length)];
 	}
 };
 
 const corn = { name: baller.name, cool: baller.coolName, thing: baller.coolThing };
 
-// console.log(corn);
+function pachinko() {
+	console.log(baller);
+};
