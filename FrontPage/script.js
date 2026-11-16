@@ -24,7 +24,37 @@ input.addEventListener("keydown", (e) => {
 		const code = input.value;
 		input.value = "";
 		try {
-			const result = eval(code);
+			const result = window.eval(code);
+			if (result !== undefined) printLine(result);
+		} catch (err) {
+			printLine(err.message, true);
+		}
+	}
+});
+
+// Console history handler.
+const history = [];
+let historyIndex = 0;
+
+input.addEventListener("keydown", (e) => {
+	if (e.key === "ArrowUp" && historyIndex > 0) {
+		historyIndex--;
+		input.value = history[historyIndex];
+	} else if (e.key === "ArrowDown") {
+		if (historyIndex < history.length - 1) {
+			historyIndex++;
+			input.value = history[historyIndex];
+		} else {
+			historyIndex = history.length;
+			input.value = "";
+		}
+	} else if (e.key === "Enter" && input.value.trim() !== "") {
+		const code = input.value;
+		history.push(code);
+		historyIndex = history.length;
+		input.value = "";
+		try {
+			const result = window.eval(code);
 			if (result !== undefined) printLine(result);
 		} catch (err) {
 			printLine(err.message, true);
