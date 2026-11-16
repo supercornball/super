@@ -1,63 +1,58 @@
-// Console handler.
+// Console Stuff (Lowk the previous version is shi so I just use Google Overview to make a better ver).
 const input = document.getElementById("console-input");
 const output = document.getElementById("console-output");
+const runBum = document.getElementById("console-run");
 
-function printLine(text, isError = false) {
+function printLine(text, type = "result") {
 	const line = document.createElement("div");
-	line.textContent = "> " + text;
+	line.style.marginBottom = "6px";
 	
-	if (isError) line.style.color = "#ff5555";
+	if (type === "command") {
+		line.style.color = "#38bdf8";
+		line.textContent = "> " + text;
+	} else if (type === "error") {
+		line.style.color = "#f87171";
+		line.textContent = "✖ " + text;
+	} else {
+		line.style.color = "#a7f3d0";
+		line.textContent = "← " + text;
+	}
+	
 	output.appendChild(line);
-	output.scrollTop = output.scrollHeight; // Auto-scroll to bottom
+	output.scrollTop = output.scrollHeight;
 }
 
-// Redirect console.log to also print in da page.
 const originalLog = console.log;
 console.log = function (...args) {
 	originalLog.apply(console, args);
-	printLine(args.join(" "));
+	printLine(args.join(" "), "result");
 };
 
-// Run code when pressing Enter.
-input.addEventListener("keydown", (e) => {
-	if (e.key === "Enter" && input.value.trim() !== "") {
-		const code = input.value;
-		input.value = "";
-		try {
-			const result = window.eval(code);
-			if (result !== undefined) printLine(result);
-		} catch (err) {
-			printLine(err.message, true);
-		}
+function executeCode() {
+	const rawCode = input.value.trim();
+	if (!rawCode) return;
+	
+	printLine(rawCode, "command");
+	input.value = "";
+	
+	// Convert top-level 'let' and 'const' to 'var' so variables persist across runs
+	const persistentCode = rawCode.replace(/^\s*(let|const)\s+/gm, "var ");
+	
+	try {
+		const result = window.eval(persistentCode);
+		if (result !== undefined) printLine(result, "result");
+	} catch (err) {
+		printLine(err.message, "error");
 	}
-});
+}
 
-// Console history handler.
-const history = [];
-let historyIndex = 0;
+// Run when clicking the button (Enter inside textarea now acts as a normal newline)
+runBum.addEventListener("click", executeCode);
 
+// Optional shortcut: Ctrl+Enter or Cmd+Enter also clicks Run
 input.addEventListener("keydown", (e) => {
-	if (e.key === "ArrowUp" && historyIndex > 0) {
-		historyIndex--;
-		input.value = history[historyIndex];
-	} else if (e.key === "ArrowDown") {
-		if (historyIndex < history.length - 1) {
-			historyIndex++;
-			input.value = history[historyIndex];
-		} else {
-			historyIndex = history.length;
-			input.value = "";
-		}
-	} else if (e.key === "Enter" && input.value.trim() !== "") {
-		const code = input.value;
-		history.push(code);
-		historyIndex = history.length;
-		input.value = "";
-		try {
-			const result = window.eval(code);
-			if (result !== undefined) printLine(result);
-		} catch (err) {
-			printLine(err.message, true);
-		}
+	if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+		e.preventDefault();
+		executeCode();
 	}
 });
