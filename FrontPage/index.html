@@ -26,8 +26,13 @@
 		<br>
 		<!---=====--->
 		<div id="console-box" class="console">
-			<textarea id="console-input" rows="2" placeholder="Type to the console..."></textarea>
+			<div id="console-header">JavaScript Console</div>
 			<div id="console-output"></div>
+			<div id="console-input-row">
+				<span class="prompt">&gt;</span> <!-- '&gt; is '>' -->
+				<textarea id="console-input" rows="3" placeholder="Type to the console..."></textarea>
+				<button id="console-run">RUN</button>
+			</div>
 		</div>
 		<!---=====--->
 		<script src="./script.js"></script>
