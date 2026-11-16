@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launch Deck | GitHub CoPilot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="brand-mark">C</div>
+        <div>
+          <div class="brand-label">GitHub</div>
+          <div class="brand-name">CoPilot</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#overview">Overview</a>
+        <a href="#tools">Tools</a>
+        <a href="#insights">Insights</a>
+        <a href="#narrative">Narrative</a>
+      </nav>
+
+      <button class="primary-btn">Deploy Flow</button>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero" id="overview">
+        <div class="hero-copy">
+          <p class="eyebrow">AI workspace</p>
+          <h1>Build smarter, ship faster.</h1>
+          <p class="lead">
+            A creative launchpad for code, ideas, and momentum. This workspace helps teams explore, synthesize,
+            and turn raw intent into polished outcomes.
+          </p>
+
+          <div class="cta-row">
+            <button class="primary-btn">Start a mission</button>
+            <button class="secondary-btn">View workflow</button>
+          </div>
+
+          <ul class="stats">
+            <li>
+              <strong id="stat-speed">24x</strong>
+              <span>faster iteration</span>
+            </li>
+            <li>
+              <strong id="stat-ideas">18</strong>
+              <span>active solution paths</span>
+            </li>
+            <li>
+              <strong id="stat-focus">92%</strong>
+              <span>focus retention</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero-panel">
+          <div class="panel-header">
+            <span class="dot red"></span>
+            <span class="dot amber"></span>
+            <span class="dot green"></span>
+          </div>
+
+          <div class="terminal-window">
+            <div class="terminal-line">
+              <span class="prompt">$</span>
+              <span class="typed-text" id="typedText"></span>
+              <span class="cursor"></span>
+            </div>
+            <div class="terminal-output">
+              <span>✓ Context loaded</span>
+              <span>✓ Strategy mapped</span>
+              <span>✓ Code generation ready</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-grid" id="tools">
+        <article class="card feature-card accent-blue">
+          <span class="icon">✦</span>
+          <h3>Prompt-to-Plan</h3>
+          <p>Turn vague ideas into ordered, actionable technical plans.</p>
+        </article>
+
+        <article class="card feature-card accent-purple">
+          <span class="icon">⚡</span>
+          <h3>Rapid Prototyping</h3>
+          <p>Generate interfaces, interactions, and front-end structure in minutes.</p>
+        </article>
+
+        <article class="card feature-card accent-green">
+          <span class="icon">◎</span>
+          <h3>Context-aware Help</h3>
+          <p>Keep momentum with relevant suggestions based on your current work.</p>
+        </article>
+      </section>
+
+      <section class="insight-panel" id="insights">
+        <div class="panel-copy">
+          <p class="eyebrow">Operational insight</p>
+          <h2>Make the next step obvious.</h2>
+          <p>
+            Whether you are refining a feature, debugging a route, or shaping a new product idea, the best system is
+            one that reduces friction and keeps the creative loop alive.
+          </p>
+        </div>
+
+        <div class="chart-card card">
+          <div class="chart-header">
+            <span>Momentum curve</span>
+            <span class="chip">Live</span>
+          </div>
+          <div class="bars" aria-label="Momentum chart">
+            <span style="--h: 35%"></span>
+            <span style="--h: 48%"></span>
+            <span style="--h: 58%"></span>
+            <span style="--h: 72%"></span>
+            <span style="--h: 84%"></span>
+            <span style="--h: 96%"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="narrative" id="narrative">
+        <div class="card narrative-card">
+          <p class="eyebrow">Design philosophy</p>
+          <h3>Build with clarity, not noise.</h3>
+          <p>
+            The interface is intentionally lean: a system of focus, ceremony, and adaptive insight that keeps every
+            idea in motion without drowning the builder in clutter.
+          </p>
+        </div>
+
+        <div class="mini-stack">
+          <div class="stack-item">
+            <span>Intent</span>
+            <strong>Frame the mission</strong>
+          </div>
+          <div class="stack-item">
+            <span>Flow</span>
+            <strong>Generate momentum</strong>
+          </div>
+          <div class="stack-item">
+            <span>Ship</span>
+            <strong>Deliver confidence</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
