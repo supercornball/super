@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b0a">
+
+    <title>THE NULL ORACLE</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <main class="terminal">
+        <header class="topbar">
+            <div class="brand">
+                <span class="status-light"></span>
+                NULL SYSTEMS
+            </div>
+
+            <div class="system-status">
+                <span>SYS.STATUS:</span>
+                <span class="online">QUESTIONABLE</span>
+            </div>
+        </header>
+
+        <section class="hero">
+            <p class="eyebrow">// AN UNAUTHORIZED EXPERIMENT</p>
+
+            <h1>THE NULL<br><span>ORACLE</span></h1>
+
+            <p class="subtitle">
+                Answers to questions nobody asked.
+                Predictions nobody requested.
+                Accuracy not included.
+            </p>
+        </section>
+
+        <section class="oracle-panel">
+            <div class="panel-heading">
+                <span>01 / INPUT TERMINAL</span>
+                <span class="blink">AWAITING INPUT_</span>
+            </div>
+
+            <label for="question">YOUR QUESTION</label>
+
+            <textarea
+                id="question"
+                placeholder="Ask the void something..."
+                maxlength="300"
+                rows="3"
+            ></textarea>
+
+            <div class="input-footer">
+                <span id="char-count">0 / 300</span>
+
+                <button id="ask-button">
+                    CONSULT THE VOID ↗
+                </button>
+            </div>
+        </section>
+
+        <section class="response-panel">
+            <div class="panel-heading">
+                <span>02 / ORACLE RESPONSE</span>
+                <span id="response-status">NO DATA</span>
+            </div>
+
+            <div id="response" class="response">
+                <span class="placeholder">
+                    The void is listening.
+                    It is probably judging you.
+                </span>
+            </div>
+        </section>
+
+        <footer>
+            <span>NULL SYSTEMS © 2026</span>
+            <span>BUILT WITH QUESTIONABLE INTENT</span>
+        </footer>
+    </main>
+</body>
+</html>
