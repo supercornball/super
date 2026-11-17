@@ -12,3 +12,186 @@ body.scrock {
 }
 
 /* TBA i want to make html first once again */
+/* lets go again */
+
+header {
+	margin: 0;
+	padding: 0 1.25rem;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	background-color: #ffffff;
+	/* Make header sticky at top. */
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	/* Added: Smooth transition for shadow effect. */
+	transition: box-shadow 0.3s ease;
+	/* Added: Space items apart - h1 left, button right. */
+	justify-content: space-between;
+}
+
+button {
+	user-select: none;
+}
+
+/* Added: Shadow effect when scrolled. */
+header.scrolle {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+header h1 {
+	/* Removed: position: sticky (not needed, header itself is fixed.). */
+	margin: 0;
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+/* Added: Burger button styling. */
+header button {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	width: 28px;
+	height: 28px;
+	position: relative;
+}
+
+/* Added: Burger lines. */
+header button span {
+	display: block;
+	width: 100%;
+	height: 2px;
+	background-color: #0f172a;
+	transition: all 0.3s ease;
+	transform-origin: center;
+}
+
+/* Changed: Fade out burger button when menu opens. */
+header button.lowk {
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* Added: Blur overlay. */
+.blur {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(255, 255, 255, 0.7);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+	z-index: 50;
+}
+
+/* Added: Show overlay when active. */
+.blur.topg {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Added: Close button (X) on overlay - positioned same as burger. */
+.bumclose {
+	position: fixed;
+	top: 10px; /* Same vertical position as burger. */
+	right: 1.25rem; /* Same horizontal position as burger. */
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	width: 28px;
+	height: 28px;
+	z-index: 101;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+/* Added: Show close button when overlay is active. */
+.blur.topg .bumclose {
+	opacity: 1;
+}
+
+/* Added: Close button spans (X shape). */
+.bumclose span {
+	display: block;
+	width: 100%;
+	height: 2px;
+	background-color: #0f172a;
+	transition: all 0.3s ease;
+	transform-origin: center;
+}
+
+/* Added: X formation - always in X shape. */
+.bumclose span:nth-child(1) {
+	transform: translateY(6px) rotate(45deg);
+}
+
+.bumclose span:nth-child(2) {
+	opacity: 0;
+}
+
+.bumclose span:nth-child(3) {
+	transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Changed: Navigation menu - now simple links on right side. */
+#curtain {
+	position: fixed;
+	top: 58px; /* Just below the X button (48px header + 10px top positioning). */
+	right: 1.25rem; /* Aligned with X button. */
+	z-index: 101;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-10px);
+	transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+/* Changed: Show nav when overlay is active. */
+.blur.topg #curtain {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+/* Removed: ul styling (no longer needed). */
+
+/* Removed: li styling (no longer needed). */
+
+/* Changed: Simple text links, slightly bigger than X. */
+nav a {
+	color: #0f172a;
+	text-decoration: none;
+	font-size: 1.25rem; /* Slightly bigger than X button. */
+	font-weight: 500;
+	transition: opacity 0.2s ease;
+	text-align: right; /* Right aligned. */
+}
+
+nav a:hover {
+	opacity: 0.7;
+}
+
+/* Added: Main content styling. */
+main {
+	/* Added: Top padding to account for fixed header. */
+	padding-top: 48px;
+}
+
+/* copied from the same old code. i need to change stuff first, but for now i want to hop on hobloxx. */
