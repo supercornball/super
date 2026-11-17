@@ -1,58 +1,70 @@
-// Console Stuff (Lowk the previous version is shi so I just use Google Overview to make a better ver).
-const input = document.getElementById("console-input");
-const output = document.getElementById("console-output");
-const runBum = document.getElementById("console-run");
+// Console Temporarily Removed.
+// Get element thingy.
+const headbum = document.getElementById('header-button');
+const closebum = document.querySelector('.bumclose');
+const curtain = document.getElementById('curtain');
+const header = document.querySelector('header');
 
-function printLine(text, type = "result") {
-	const line = document.createElement("div");
-	line.style.marginBottom = "6px";
+// Toggle menu function.
+function curts() {
+	const drawn = !curtain.classList.contains('topg');
 	
-	if (type === "command") {
-		line.style.color = "#38bdf8";
-		line.textContent = "> " + text;
-	} else if (type === "error") {
-		line.style.color = "#f87171";
-		line.textContent = "✖ " + text;
+	if (drawn) {
+		// Fade out burgir.
+		headbum.classList.add('lowk');
+		// Show overlay with X button.
+		curtain.classList.add('topg');
 	} else {
-		line.style.color = "#a7f3d0";
-		line.textContent = "← " + text;
+		// Hide overlay.
+		curtain.classList.remove('topg');
+		// Fade in burger button.
+		headbum.classList.remove('lowk');
 	}
 	
-	output.appendChild(line);
-	output.scrollTop = output.scrollHeight;
-}
-
-const originalLog = console.log;
-console.log = function (...args) {
-	originalLog.apply(console, args);
-	printLine(args.join(" "), "result");
-};
-
-function executeCode() {
-	const rawCode = input.value.trim();
-	if (!rawCode) return;
-	
-	printLine(rawCode, "command");
-	input.value = "";
-	
-	// Convert top-level 'let' and 'const' to 'var' so variables persist across runs
-	const persistentCode = rawCode.replace(/^\s*(let|const)\s+/gm, "var ");
-	
-	try {
-		const result = window.eval(persistentCode);
-		if (result !== undefined) printLine(result, "result");
-	} catch (err) {
-		printLine(err.message, "error");
+	// Prevent body scroll when menu is open.
+	if (drawn) {
+		document.body.classList.add('scrock');
+	} else {
+		document.body.classList.remove('scrock');
 	}
 }
 
-// Run when clicking the button (Enter inside textarea now acts as a normal newline)
-runBum.addEventListener("click", executeCode);
+// Burgir button click event.
+headbum.addEventListener('click', curts);
 
-// Optional shortcut: Ctrl+Enter or Cmd+Enter also clicks Run
-input.addEventListener("keydown", (e) => {
-	if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-		e.preventDefault();
-		executeCode();
+// Close button click event.
+closebum.addEventListener('click', curts);
+
+// Overlay click to close menu (but not when clicking the nav links).
+curtain.addEventListener('click', (e) => {
+	// Only close if clicking directly on overlay, not on its children.
+	if (e.target === curtain) {
+		curts();
 	}
+});
+
+// Close menu when clicking nav links. 
+const curtscont = document.querySelectorAll('#porter a');
+curtscont.forEach(link => {
+	link.addEventListener('click', () => {
+		if (curtain.classList.contains('topg')) {
+			curts();
+		}
+	});
+});
+
+// Scroll detection for header shadow effect.
+let scrolpon = 0;
+
+window.addEventListener('scroll', () => {
+	const scrollet = window.scrollY || document.documentElement.scrollTop;
+	
+	// Add shadow when scrolled down from top.
+	if (scrollet > 10) {
+		header.classList.add('scrolle');
+	} else {
+		header.classList.remove('scrolle');
+	}
+	
+	scrolpon = scrollet;
 });
