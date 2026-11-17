@@ -1,1 +1,14 @@
+body {
+	margin: 0;
+	background-colour: #ffffff;
+	color: #0f172a;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	line-height: 1.5;
+}
 
+/* Make body unscrollable. (Idk why I added this now, I forgot because im just reusing my old css file I found on my personal HTML site.)*/
+body.scrock {
+	overflow: hidden;
+}
+
+/* TBA i want to make html first once again */
