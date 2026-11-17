@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	background-colour: #ffffff;
+	background-color: #ffffff;
 	color: #0f172a;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	line-height: 1.5;
@@ -149,7 +149,7 @@ header button.lowk {
 }
 
 /* Changed: Navigation menu - now simple links on right side. */
-#curtain {
+#porter {
 	position: fixed;
 	top: 58px; /* Just below the X button (48px header + 10px top positioning). */
 	right: 1.25rem; /* Aligned with X button. */
@@ -164,7 +164,7 @@ header button.lowk {
 }
 
 /* Changed: Show nav when overlay is active. */
-.blur.topg #curtain {
+.blur.topg #porter {
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(0);
