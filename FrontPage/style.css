@@ -191,7 +191,7 @@ nav a:hover {
 /* Added: Main content styling. */
 main {
 	/* Added: Top padding to account for fixed header. */
-	padding-top: 48px;
+	padding-top: 48px 1.25rem 1.25rem;
 }
 
 /* copied from the same old code. i need to change stuff first, but for now i want to hop on hobloxx. */
@@ -199,7 +199,7 @@ main {
 
 /* Outer Console Box. */
 #console-box {
-	margin: 0 1.25rem 1.5rem;
+	margin: 0 0 0;
 	background-color: #f8fafc;
 	border: 1px solid #0f172a;
 	border-radius: 6px;
