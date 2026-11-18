@@ -199,10 +199,10 @@ main {
 
 /* Outer Console Box. */
 #console-box {
+	margin: 0 1.25rem 1.5rem;
 	background-color: #f8fafc;
 	border: 1px solid #0f172a;
 	border-radius: 6px;
-	width: 100%;
 	box-sizing: border-box;
 	overflow: hidden;
 	display: flex;
@@ -257,6 +257,8 @@ main {
 /* Bordered Promptbox. */
 #console-input {
 	flex: 1;
+	height: 4.75rem;
+	box-sizing: border-box;
 	background-color: #ffffff;
 	border: 1px solid #0f172a;
 	border-radius: 4px;
@@ -276,7 +278,10 @@ main {
 
 /* Square RUN Button. */
 #console-run {
-	aspect-ratio: 1 / 1;
+	width: 4.75rem;
+	height: 4.75rem;
+	flex-shrink: 0;
+	box-sizing: border-box;
 	background-color: #ffffff;
 	color: #0f172a;
 	border: 1px solid #0f172a;
