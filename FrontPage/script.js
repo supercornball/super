@@ -76,12 +76,14 @@ const consoleRun = document.getElementById('console-run');
 
 // Print each line individually with '> ' (never grouped or summarized).
 function printRawLine(text, isError = false) {
-	const line = document.createElement('div');
-	line.textContent = '> ' + text;
-	if (isError) {
-		line.style.color = '#dc2626';
-	}
-	consoleOutput.appendChild(line);
+	String(text).split('\n').forEach(part => {
+		const line = document.createElement('div');
+		line.textContent = '> ' + part;
+		if (isError) {
+			line.style.color = '#dc2626';
+		}
+		consoleOutput.appendChild(line);
+	});
 	consoleOutput.scrollTop = consoleOutput.scrollHeight;
 }
 
