@@ -120,12 +120,14 @@ function runConsoleCode() {
 	}
 }
 
-consoleRun.addEventListener('click', runConsoleCode);
+if (consoleRun && consoleInput && consoleOutput) {
+	consoleRun.addEventListener('click', runConsoleCode);
 
-// Ctrl+Enter (or Cmd+Enter) runs the code; normal Enter adds a newline.
-consoleInput.addEventListener('keydown', (e) => {
-	if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-		e.preventDefault();
-		runConsoleCode();
-	}
-});
+	// Ctrl+Enter (or Cmd+Enter) runs the code; normal Enter adds a newline.
+	consoleInput.addEventListener('keydown', (e) => {
+		if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+			e.preventDefault();
+			runConsoleCode();
+		}
+	});
+}
