@@ -3,11 +3,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
 		<!--=====-->
+		
 		<title>Supa Front Page</title>
+		
 		<!--=====--->
+		
 		<link rel="stylesheet" href="./style.css">
 	</head>
+	<!-- Just a separator to catch eye --->
 	<body>
 		<header>
 			<h1>Supa Front Page</h1>
@@ -17,7 +22,7 @@
 				<span></span>
 			</button>
 		</header>
-
+		<!-- The Curtain (Menu overlay) --->
 		<div id="curtain" class="blur">
 			<button id="close-button" class="bumclose">
 				<span></span>
@@ -25,14 +30,24 @@
 				<span></span>
 			</button>
 			<nav id="porter">
+				<a href="#about">About</a>
 				<a href="#linker">Quicklink</a>
 				<a href="#console-box">Console</a>
 			</nav>
 		</div>
+		
 		<!---=====--->
-		<br>
-		<!---=====--->
+
+		<!-- Main Content --->
 		<main>
+			<div id="about" class="title-and-paragraph">
+				<h1>Supa Front Page: The front page for the super repo.</h1>
+				<p>I have zero idea what is this repo even about, probably just multi purpose nonsense.</p>
+			</div>
+			
+			<!--=====--->
+
+			<!-- Quicklink to access some stuff in this repo --->
 			<div id="linker" class="quicklink">
 				<h3>Link to stuff:</h3>
 				<div class="gpt">
@@ -44,9 +59,11 @@
 					<a id="launch-deck" href="../ballerstuff/AI/Github%20CoPilot/LaunchDeck/">Github CoPilot's Launch Deck</a>
 				</div>
 			</div>
-			<!---=====--->
 			<br>
+			
 			<!---=====--->
+			
+			<!--- The Console (Somekinda thing to toy with) --->
 			<div id="console-box" class="console">
 				<div id="console-header">JavaScript Console</div>
 				<div id="console-output"></div>
@@ -57,7 +74,9 @@
 				</div>
 			</div>
 		</main>
+		
 		<!---=====--->
+		
 		<script src="./script.js"></script>
 	</body>
 </html>
