@@ -74,16 +74,14 @@ const consoleInput = document.getElementById('console-input');
 const consoleOutput = document.getElementById('console-output');
 const consoleRun = document.getElementById('console-run');
 
-// Print each line individually with '> ' (never grouped or summarized).
+// Print a single line with '> ' (skips completely empty lines).
 function printRawLine(text, isError = false) {
-	String(text).split('\n').forEach(part => {
-		const line = document.createElement('div');
-		line.textContent = '> ' + part;
-		if (isError) {
-			line.style.color = '#dc2626';
-		}
-		consoleOutput.appendChild(line);
-	});
+	const line = document.createElement('div');
+	line.textContent = '> ' + text;
+	if (isError) {
+		line.style.color = '#dc2626';
+	}
+	consoleOutput.appendChild(line);
 	consoleOutput.scrollTop = consoleOutput.scrollHeight;
 }
 
@@ -100,25 +98,61 @@ console.error = function (...args) {
 	printRawLine(args.map(a => (typeof a === 'object' ? JSON.stringify(a) : String(a))).join(' '), true);
 };
 
+// Split input into runnable chunks (line-by-line, keeping { } / ( ) / [ ] blocks together).
+function splitStatements(code) {
+	const lines = code.split('\n');
+	const chunks = [];
+	let current = [];
+	let depth = 0;
+
+	for (const line of lines) {
+		if (line.trim() === '' && depth === 0) continue;
+		current.push(line);
+
+		for (const ch of line) {
+			if (ch === '{' || ch === '(' || ch === '[') depth++;
+			if (ch === '}' || ch === ')' || ch === ']') depth--;
+		}
+
+		if (depth <= 0) {
+			depth = 0;
+			chunks.push(current.join('\n'));
+			current = [];
+		}
+	}
+
+	if (current.length > 0) {
+		chunks.push(current.join('\n'));
+	}
+
+	return chunks;
+}
+
 // Execute input when RUN is clicked.
 function runConsoleCode() {
 	const raw = consoleInput.value;
 	if (raw.trim() === '') return;
 
-	printRawLine(raw);
 	consoleInput.value = '';
+	const chunks = splitStatements(raw);
 
-	// Convert top-level let/const to var so variables persist across runs.
-	const persistent = raw.replace(/^\s*(let|const)\s+/gm, 'var ');
+	for (const chunk of chunks) {
+		chunk.split('\n').forEach(line => {
+			if (line.trim() !== '') printRawLine(line);
+		});
 
-	try {
-		const result = window.eval(persistent);
-		if (result !== undefined) {
-			const formatted = typeof result === 'object' ? JSON.stringify(result) : String(result);
-			printRawLine(formatted);
+		// Convert top-level let/const to var so variables persist across runs.
+		const persistent = chunk.replace(/^\s*(let|const)\s+/gm, 'var ');
+
+		try {
+			const result = window.eval(persistent);
+			if (result !== undefined) {
+				const formatted = typeof result === 'object' ? JSON.stringify(result) : String(result);
+				printRawLine(formatted);
+			}
+		} catch (err) {
+			printRawLine(err.name + ': ' + err.message, true);
 		}
-	} catch (err) {
-		printRawLine(err.name + ': ' + err.message, true);
 	}
 }
 
