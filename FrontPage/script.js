@@ -74,10 +74,17 @@ const consoleInput = document.getElementById('console-input');
 const consoleOutput = document.getElementById('console-output');
 const consoleRun = document.getElementById('console-run');
 
-// Print a single line with '> ' (skips completely empty lines).
-function printRawLine(text, isError = false) {
+// Print a single line with '> ' (skips completely empty lines). Edit: replaced the prompt for the reply.
+function printInputLine(text) {
 	const line = document.createElement('div');
 	line.textContent = '> ' + text;
+	consoleOutput.appendChild(line);
+	consoleOutput.scrollTop = consoleOutput.scrollHeight;
+}
+
+function printOutputLine(text, isError = false) {
+	const line = document.createElement('div');
+	line.textContent = 'Console: ' + text;
 	if (isError) {
 		line.style.color = '#dc2626';
 	}
@@ -89,13 +96,13 @@ function printRawLine(text, isError = false) {
 const origLog = console.log;
 console.log = function (...args) {
 	origLog.apply(console, args);
-	printRawLine(args.map(a => (typeof a === 'object' ? JSON.stringify(a) : String(a))).join(' '));
+	printOutputLine(args.map(a => (typeof a === 'object' ? JSON.stringify(a) : String(a))).join(' '));
 };
 
 const origError = console.error;
 console.error = function (...args) {
 	origError.apply(console, args);
-	printRawLine(args.map(a => (typeof a === 'object' ? JSON.stringify(a) : String(a))).join(' '), true);
+	printOutputLine(args.map(a => (typeof a === 'object' ? JSON.stringify(a) : String(a))).join(' '), true);
 };
 
 // Split input into runnable chunks (line-by-line, keeping { } / ( ) / [ ] blocks together).
@@ -138,7 +145,7 @@ function runConsoleCode() {
 
 	for (const chunk of chunks) {
 		chunk.split('\n').forEach(line => {
-			if (line.trim() !== '') printRawLine(line);
+			if (line.trim() !== '') printInputLine(line);
 		});
 
 		// Convert top-level let/const to var so variables persist across runs.
@@ -148,10 +155,10 @@ function runConsoleCode() {
 			const result = window.eval(persistent);
 			if (result !== undefined) {
 				const formatted = typeof result === 'object' ? JSON.stringify(result) : String(result);
-				printRawLine(formatted);
+				printOutputLine(formatted);
 			}
 		} catch (err) {
-			printRawLine(err.name + ': ' + err.message, true);
+			printOutputLine(err.name + ': ' + err.message, true);
 		}
 	}
 }
