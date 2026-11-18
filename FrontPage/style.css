@@ -191,7 +191,7 @@ nav a:hover {
 /* Added: Main content styling. */
 main {
 	/* Added: Top padding to account for fixed header. */
-	padding: 48px 1.25rem 1.25rem;
+	padding: 48px 1rem 1rem;
 }
 
 /* copied from the same old code. i need to change stuff first, but for now i want to hop on hobloxx. */
